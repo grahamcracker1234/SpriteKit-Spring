@@ -20,39 +20,31 @@ import SpriteKit
 // MARK: Move
 
 @objc public extension SKAction {
-    
-    @objc public class func move(by delta: CGVector, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        let moveByX = animate(keyPath: \SKNode.position.x, byValue: delta.dx, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        let moveByY = animate(keyPath: \SKNode.position.y, byValue: delta.dy, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([moveByX, moveByY])
+    class func move(by delta: CGVector, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        let moveByX = self.animate(keyPath: \SKNode.position.x, byValue: delta.dx, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let moveByY = self.animate(keyPath: \SKNode.position.y, byValue: delta.dy, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        return .group([moveByX, moveByY])
     }
     
-    @objc public class func move(to location: CGPoint, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        let moveToX = animate(keyPath: \SKNode.position.x, toValue: location.x, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        let moveToY = animate(keyPath: \SKNode.position.y, toValue: location.y, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([moveToX, moveToY])
+    class func move(to location: CGPoint, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        let moveToX = self.animate(keyPath: \SKNode.position.x, toValue: location.x, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let moveToY = self.animate(keyPath: \SKNode.position.y, toValue: location.y, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        return .group([moveToX, moveToY])
     }
     
-    @objc public class func moveBy(x deltaX: CGFloat, y deltaY: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+    class func moveBy(x deltaX: CGFloat, y deltaY: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        let moveByX = self.animate(keyPath: \SKNode.position.x, byValue: deltaX, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let moveByY = self.animate(keyPath: \SKNode.position.y, byValue: deltaY, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
         
-        let moveByX = animate(keyPath: \SKNode.position.x, byValue: deltaX, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        let moveByY = animate(keyPath: \SKNode.position.y, byValue: deltaY, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([moveByX, moveByY])
+        return .group([moveByX, moveByY])
     }
     
-    @objc public class func moveTo(x: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.position.x, toValue: x, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func moveTo(x: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.position.x, toValue: x, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func moveTo(y: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.position.y, toValue: y, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func moveTo(y: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.position.y, toValue: y, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 }
 
@@ -61,15 +53,12 @@ import SpriteKit
 // MARK: Rotate
 
 @objc public extension SKAction {
-    
-    @objc public class func rotate(byAngle radians: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.zRotation, byValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func rotate(byAngle radians: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.zRotation, byValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func rotate(toAngle radians: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.zRotation, toValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func rotate(toAngle radians: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.zRotation, toValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 }
 
@@ -78,15 +67,12 @@ import SpriteKit
 // MARK: Speed
 
 @objc public extension SKAction {
-    
-    @objc public class func speed(by speed: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.speed, byValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func speed(by speed: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.speed, byValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func speed(to speed: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.speed, toValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func speed(to speed: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.speed, toValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 }
 
@@ -95,41 +81,32 @@ import SpriteKit
 // MARK: Scale
 
 public extension SKAction {
-    
-    @objc public class func scale(by scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return scaleX(by: scale, y: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func scale(by scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.scaleX(by: scale, y: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func scale(to scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return scaleX(to: scale, y: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func scale(to scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.scaleX(to: scale, y: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func scaleX(by xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        let scaleXBy = animate(keyPath: \SKNode.xScale, byValue: xScale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        let scaleYBy = animate(keyPath: \SKNode.yScale, byValue: yScale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([scaleXBy, scaleYBy])
+    class func scaleX(by xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        let scaleXBy = self.animate(keyPath: \SKNode.xScale, byValue: xScale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let scaleYBy = self.animate(keyPath: \SKNode.yScale, byValue: yScale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        return .group([scaleXBy, scaleYBy])
     }
     
-    @objc public class func scaleX(to scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.xScale, toValue: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func scaleX(to scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.xScale, toValue: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func scaleY(to scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.yScale, toValue: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func scaleY(to scale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.yScale, toValue: scale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func scaleX(to xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
+    class func scaleX(to xScale: CGFloat, y yScale: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         let scaleXTo = self.scaleX(to: xScale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
         let scaleYTo = self.scaleY(to: yScale, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([scaleXTo, scaleYTo])
+        return .group([scaleXTo, scaleYTo])
     }
 }
 
@@ -138,25 +115,20 @@ public extension SKAction {
 // MARK: Fade
 
 public extension SKAction {
-    
-    @objc public class func fadeIn(withDuration duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.alpha, toValue: 1, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func fadeIn(withDuration duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.alpha, toValue: 1, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func fadeOut(withDuration duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.alpha, toValue: 0, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func fadeOut(withDuration duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.alpha, toValue: 0, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func fadeAlpha(by factor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.alpha, byValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func fadeAlpha(by factor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.alpha, byValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func fadeAlpha(to factor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKNode.alpha, toValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func fadeAlpha(to factor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKNode.alpha, toValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 }
 
@@ -165,31 +137,24 @@ public extension SKAction {
 // MARK: Resize
 
 @objc public extension SKAction {
-    
-    @objc public class func resize(toWidth width: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKSpriteNode.size.width, toValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func resize(toWidth width: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKSpriteNode.size.width, toValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func resize(toHeight height: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKSpriteNode.size.height, toValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func resize(toHeight height: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKSpriteNode.size.height, toValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    @objc public class func resize(byWidth width: CGFloat, height: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        let resizeByWidth = animate(keyPath: \SKSpriteNode.size.width, byValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        let resizeByHeight = animate(keyPath: \SKSpriteNode.size.height, byValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([resizeByWidth, resizeByHeight])
+    class func resize(byWidth width: CGFloat, height: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        let resizeByWidth = self.animate(keyPath: \SKSpriteNode.size.width, byValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let resizeByHeight = self.animate(keyPath: \SKSpriteNode.size.height, byValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        return .group([resizeByWidth, resizeByHeight])
     }
     
-    @objc public class func resize(toWidth width: CGFloat, height: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
+    class func resize(toWidth width: CGFloat, height: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         let resizeToWidth = self.resize(toWidth: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
         let resizeToHeight = self.resize(toHeight: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-        
-        return SKAction.group([resizeToWidth, resizeToHeight])
+        return .group([resizeToWidth, resizeToHeight])
     }
 }
 
@@ -198,10 +163,8 @@ public extension SKAction {
 // MARK: Colorize
 
 @objc public extension SKAction {
-    
-    @objc public class func colorize(withColorBlendFactor colorBlendFactor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(keyPath: \SKSpriteNode.colorBlendFactor, toValue: colorBlendFactor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func colorize(withColorBlendFactor colorBlendFactor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(keyPath: \SKSpriteNode.colorBlendFactor, toValue: colorBlendFactor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 }
 
@@ -209,19 +172,16 @@ public extension SKAction {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: - Damping Logic
 
-public extension SKAction {
-    
-    public class func animate<T>(keyPath: ReferenceWritableKeyPath<T, CGFloat>, byValue initialDistance: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(_keyPath: keyPath, byValue: initialDistance, toValue: nil, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+private extension SKAction {
+    class func animate<T>(keyPath: ReferenceWritableKeyPath<T, CGFloat>, byValue initialDistance: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(_keyPath: keyPath, byValue: initialDistance, toValue: nil, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    public class func animate<T>(keyPath: ReferenceWritableKeyPath<T, CGFloat>, toValue finalValue: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-        
-        return animate(_keyPath: keyPath, byValue: nil, toValue: finalValue, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    class func animate<T>(keyPath: ReferenceWritableKeyPath<T, CGFloat>, toValue finalValue: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+        return self.animate(_keyPath: keyPath, byValue: nil, toValue: finalValue, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
     
-    private class func animate<T>(_keyPath: ReferenceWritableKeyPath<T, CGFloat>, byValue: CGFloat!, toValue: CGFloat!, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+    class func animate<T>(_keyPath: ReferenceWritableKeyPath<T, CGFloat>, byValue: CGFloat!, toValue: CGFloat!, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         
         var initialValue: CGFloat!
         var naturalFrequency: CGFloat = 0
@@ -233,74 +193,65 @@ public extension SKAction {
         var finalValue: CGFloat! = toValue
         var initialDistance: CGFloat! = byValue
         
-        let animation = SKAction.customAction(withDuration: duration, actionBlock: {
-            (node, elapsedTime) in
-            
-            if let propertyToAnimation = node as? T {
+        let animation: SKAction = .customAction(withDuration: duration, actionBlock: { (node, elapsedTime) in
+            guard let propertyToAnimation = node as? T else { return }
+            if initialValue == nil {
+                initialValue = propertyToAnimation[keyPath: _keyPath]
+                initialDistance = initialDistance ?? finalValue - initialValue!
+                finalValue = finalValue ?? initialValue! + initialDistance
                 
-                if initialValue == nil {
-                    
-                    initialValue = propertyToAnimation[keyPath: _keyPath]
-                    initialDistance = initialDistance ?? finalValue - initialValue!
-                    finalValue = finalValue ?? initialValue! + initialDistance
-                    
-                    var magicNumber: CGFloat! // picked manually to visually match the behavior of UIKit
-                    if dampingRatio < 1 { magicNumber = 8 / dampingRatio }
-                    else if dampingRatio == 1 { magicNumber = 10 }
-                    else { magicNumber = 12 * dampingRatio }
-                    
-                    naturalFrequency = magicNumber / CGFloat(duration)
-                    dampedFrequency = naturalFrequency * sqrt(1 - pow(dampingRatio, 2))
-                    t1 = 1 / (naturalFrequency * (dampingRatio - sqrt(pow(dampingRatio, 2) - 1)))
-                    t2 = 1 / (naturalFrequency * (dampingRatio + sqrt(pow(dampingRatio, 2) - 1)))
-                    
-                    if dampingRatio < 1 {
-                        A = initialDistance
-                        B = (dampingRatio * naturalFrequency - velocity) * initialDistance / dampedFrequency
-                    } else if dampingRatio == 1 {
-                        A = initialDistance
-                        B = (naturalFrequency - velocity) * initialDistance
-                    } else {
-                        A = (t1 * t2 / (t1 - t2))
-                        A *= initialDistance * (1/t2 - velocity)
-                        B = (t1 * t2 / (t2 - t1))
-                        B *= initialDistance * (1/t1 - velocity)
-                    }
+                let magicNumber: CGFloat // picked manually to visually match the behavior of UIKit
+                switch dampingRatio {
+                case 1: magicNumber = 10
+                case ..<1: magicNumber = 8 / dampingRatio
+                default: magicNumber = 12 * dampingRatio
                 }
                 
-                var currentValue: CGFloat!
+                naturalFrequency = magicNumber / CGFloat(duration)
+                dampedFrequency = naturalFrequency * sqrt(1 - pow(dampingRatio, 2))
+                t1 = 1 / (naturalFrequency * (dampingRatio - sqrt(pow(dampingRatio, 2) - 1)))
+                t2 = 1 / (naturalFrequency * (dampingRatio + sqrt(pow(dampingRatio, 2) - 1)))
                 
-                if elapsedTime < CGFloat(duration) {
-                    
-                    if dampingRatio < 1 {
-                        
-                        let dampingExp:CGFloat = exp(-dampingRatio * naturalFrequency * elapsedTime)
-                        let ADamp:CGFloat = A * cos(dampedFrequency * elapsedTime)
-                        let BDamp:CGFloat = B * sin(dampedFrequency * elapsedTime)
-                        
-                        currentValue = finalValue - dampingExp * (ADamp + BDamp)
-                    } else if dampingRatio == 1 {
-                        
-                        let dampingExp: CGFloat = exp(-dampingRatio * naturalFrequency * elapsedTime)
-                        
-                        currentValue = finalValue - dampingExp * (A + B * elapsedTime)
-                    } else {
-                        
-                        let ADamp:CGFloat =  A * exp(-elapsedTime/t1)
-                        let BDamp:CGFloat = B * exp(-elapsedTime/t2)
-                        currentValue = finalValue - ADamp - BDamp
-                    }
-                } else {
-                    currentValue = finalValue
+                switch dampingRatio {
+                case 1:
+                    A = initialDistance
+                    B = (naturalFrequency - velocity) * initialDistance
+                case ..<1:
+                    A = initialDistance
+                    B = (dampingRatio * naturalFrequency - velocity) * initialDistance / dampedFrequency
+                default:
+                    A = (t1 * t2 / (t1 - t2))
+                    A *= initialDistance * (1 / t2 - velocity)
+                    B = (t1 * t2 / (t2 - t1))
+                    B *= initialDistance * (1 / t1 - velocity)
                 }
-                propertyToAnimation[keyPath: _keyPath] = currentValue
             }
+            
+            let currentValue: CGFloat
+            
+            if elapsedTime < CGFloat(duration) {
+                switch dampingRatio {
+                case 1:
+                    let dampingExp: CGFloat = exp(-dampingRatio * naturalFrequency * elapsedTime)
+                    currentValue = finalValue - dampingExp * (A + B * elapsedTime)
+                case ..<1:
+                    let dampingExp: CGFloat = exp(-dampingRatio * naturalFrequency * elapsedTime)
+                    let ADamp: CGFloat = A * cos(dampedFrequency * elapsedTime)
+                    let BDamp: CGFloat = B * sin(dampedFrequency * elapsedTime)
+                    currentValue = finalValue - dampingExp * (ADamp + BDamp)
+                default:
+                    let ADamp:CGFloat =  A * exp(-elapsedTime/t1)
+                    let BDamp:CGFloat = B * exp(-elapsedTime/t2)
+                    currentValue = finalValue - ADamp - BDamp
+                }
+            } else {
+                currentValue = finalValue
+            }
+            
+            propertyToAnimation[keyPath: _keyPath] = currentValue
         })
         
-        if delay > 0 {
-            return SKAction.sequence([SKAction.wait(forDuration: delay), animation])
-        } else {
-            return animation
-        }
+        return .sequence([.wait(forDuration: delay), animation])
     }
 }
+
