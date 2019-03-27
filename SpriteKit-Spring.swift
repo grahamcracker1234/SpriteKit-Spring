@@ -19,7 +19,7 @@ import SpriteKit
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: Move
 
-@objc public extension SKAction {
+public extension SKAction {
     class func move(by delta: CGVector, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         let moveByX = self.animate(keyPath: \SKNode.position.x, byValue: delta.dx, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
         let moveByY = self.animate(keyPath: \SKNode.position.y, byValue: delta.dy, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
@@ -52,7 +52,7 @@ import SpriteKit
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: Rotate
 
-@objc public extension SKAction {
+public extension SKAction {
     class func rotate(byAngle radians: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         return self.animate(keyPath: \SKNode.zRotation, byValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
@@ -66,7 +66,7 @@ import SpriteKit
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: Speed
 
-@objc public extension SKAction {
+public extension SKAction {
     class func speed(by speed: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         return self.animate(keyPath: \SKNode.speed, byValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
@@ -136,7 +136,7 @@ public extension SKAction {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: Resize
 
-@objc public extension SKAction {
+public extension SKAction {
     class func resize(toWidth width: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         return self.animate(keyPath: \SKSpriteNode.size.width, toValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
@@ -162,7 +162,7 @@ public extension SKAction {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // MARK: Colorize
 
-@objc public extension SKAction {
+public extension SKAction {
     class func colorize(withColorBlendFactor colorBlendFactor: CGFloat, duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
         return self.animate(keyPath: \SKSpriteNode.colorBlendFactor, toValue: colorBlendFactor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
@@ -254,4 +254,3 @@ private extension SKAction {
         return .sequence([.wait(forDuration: delay), animation])
     }
 }
-
